@@ -42,14 +42,15 @@ public class Random_Graphs {
 				}
 			}
 
-			// Documents where "/" coordinates are located
+			// Documents where "/" coordinates are located and store them!
 			String[] store_location = new String[count_1]; // STORES WHERE "0" IS LOCATED!
+			String[] seed = new String[count_1];
 			for (int y = 0; y < rand_num.length; y++) {
 				for (int z = 0; z < rand_num[y].length; z++) {
 
 					if (int_to_string[y][z].contentEquals("0")) {
 						store_location[count_2] = y + "," + z;
-
+						seed[count_2] = y + "" + z;
 						if (count_2 == count_1) {
 							break;
 						}
@@ -77,11 +78,19 @@ public class Random_Graphs {
 				System.out.println();
 			}
 
-			// The "seed" for the random graph is displayed here
+			// The "seed" for the random graph is displayed here in a readable fashion!
 			System.out.println();
-			System.out.print("[" + random_number_1 + "x" + random_number_2 + "]" + " ");
+			System.out.print("Easy to read seed layout: " + "[" + random_number_1 + "x" + random_number_2 + "]" + " ");
 			for (int j = 0; j < count_2; j++) {
-				System.out.print(store_location[j] + " ");
+				System.out.print("(" + store_location[j] + ") "); // index coordinates start at 0
+			}
+
+			// "Generates" (it is already generated) the seed for the random graph
+			// displayed!
+			System.out.println();
+			System.out.print("Random Graph Seed: " + random_number_1 + random_number_2);
+			for (int k = 0; k < count_2; k++) {
+				System.out.print(seed[k]);
 			}
 
 			// If the user wants to restart the program
@@ -92,6 +101,7 @@ public class Random_Graphs {
 			if (restart_confirmation.contentEquals("y")) {
 				System.out.println("Restarting...");
 			} else {
+				System.out.println("Program Halted!"); // add a bit of flavor to this program!
 				break;
 			}
 		}

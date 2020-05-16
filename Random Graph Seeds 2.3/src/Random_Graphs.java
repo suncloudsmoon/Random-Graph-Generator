@@ -161,229 +161,277 @@ public class Random_Graphs {
 						+ " to input a given seed and output a graph for it!");
 				assistant_help++;
 			} else if (command.contentEquals("pathfinder")) {
-				String[][] find_path = new String[6][50];
-
-				for (int i = 0; i < find_path.length; i++) {
-					for (int j = 0; j < find_path[i].length; j++) {
-						find_path[i][j] = "_";
-					}
-
-				}
-				String sleep = "";
-				System.out.println("Generating...");
-				System.out.print("|");
-				for (int i = 0; i < 12; i++) {
-					sleep = "=" + sleep; // sleep inside "=" will take the initial value!
-					System.out.print(sleep);
-					Thread.sleep(500);
-				}
-				System.out.print(">");
-
-				int location_1 = (int) (Math.random() * 5);
-				int location_2 = (int) (Math.random() * 49);
-				int coord_row = location_1, coord_column = location_2;
-
-				int counter = 0;
-
-				System.out.println();
-				String seed = "";
-				String easy_to_read_seed = "[6x50] ";
+				Scanner settings1 = new Scanner(System.in);
 
 				while (true) {
-					int pathfinder = (int) (Math.random() * 7);
-					if (counter == 0) {
-						find_path[coord_row][coord_column] = "/";
-						if ((coord_row == 5) || (coord_column == 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
+					System.out.print("Enter a pathfinder command: ");
+					String command1 = settings1.next();
+
+					if (command1.contentEquals("walk")) {
+						String[][] find_path = new String[6][50];
+
+						for (int i = 0; i < find_path.length; i++) {
+							for (int j = 0; j < find_path[i].length; j++) {
+								find_path[i][j] = "_";
+							}
+
+						}
+						String sleep = "";
+						System.out.println("Generating...");
+						System.out.print("|");
+						for (int i = 0; i < 12; i++) {
+							sleep = "=" + sleep; // sleep inside "=" will take the initial value!
+							System.out.print(sleep);
+							Thread.sleep(500);
+						}
+						System.out.print(">");
+
+						int location_1 = (int) (Math.random() * 5);
+						int location_2 = (int) (Math.random() * 49);
+						int coord_row = location_1, coord_column = location_2;
+
+						int counter = 0;
+
+						System.out.println();
+						String seed = "";
+						String easy_to_read_seed = "[6x50] ";
+						int random_stop = (int) (Math.random() * 20);
+
+						while (true) {
+							int pathfinder = (int) (Math.random() * 7);
+							if (counter == 0) {
+								find_path[coord_row][coord_column] = "/";
+								if ((coord_row == 5) || (coord_column == 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+							}
+
+							if (pathfinder == 0) { // done
+								coord_row = coord_row + 1;
+								coord_column = coord_column;
+								if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 1) { // done
+								coord_row = coord_row + 1;
+
+								coord_column = coord_column + 1;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 2) { // done
+								coord_row = coord_row;
+
+								coord_column = coord_column + 1;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 3) { // done
+								coord_row = coord_row - 1;
+
+								coord_column = coord_column + 1;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 4) { // done
+								coord_row = coord_row - 1;
+
+								coord_column = coord_column;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 5) { // done
+								coord_row = coord_row - 1;
+
+								coord_column = coord_column - 1;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 6) { // done
+								coord_row = coord_row;
+
+								coord_column = coord_column - 1;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							} else if (pathfinder == 7) {
+								coord_row = coord_row + 1;
+
+								coord_column = coord_column - 1;
+								if ((coord_row > 5) || (coord_column > 49) && (counter > random_stop)) {
+									break;
+								} else if ((coord_row > 5) || (coord_column > 49)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+								if ((coord_row < 0) || (coord_column < 0)) {
+									coord_row++;
+									coord_column++;
+								} else if ((coord_row == 50) || (coord_column == 50)) {
+									coord_row -= 2;
+									coord_column -= 2;
+								}
+
+								seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
+								easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
+										+ Integer.toString(coord_column) + ") ";
+								find_path[coord_row][coord_column] = "/";
+
+							}
+
+							counter++;
+
 						}
 
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
+						for (int i = 0; i < find_path.length; i++) {
+							for (int j = 0; j < find_path[i].length; j++) {
+								// find_path[i][j] = "_";
+								System.out.print(find_path[i][j] + " ");
+								// Thread.sleep(10);
+							}
+							System.out.println();
+
+						}
+
+						System.out.print("\nSeed: ");
+						Thread.sleep(500);
+						System.out.print(seed);
+						System.out.print("\nEasy to read seed layout: ");
+						Thread.sleep(500);
+						System.out.print(easy_to_read_seed);
+
+					} else if (command1.contentEquals("help")) {
+						System.out.println("Type walk in order to generate / in the graph together!");
 					}
-
-					if (pathfinder == 0) { // done
-						coord_row = coord_row + 1;
-						coord_column = coord_column;
-						if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 1) { // done
-						coord_row = coord_row + 1;
-
-						coord_column = coord_column + 1;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 2) { // done
-						coord_row = coord_row;
-
-						coord_column = coord_column + 1;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 3) { // done
-						coord_row = coord_row - 1;
-
-						coord_column = coord_column + 1;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 4) { // done
-						coord_row = coord_row - 1;
-
-						coord_column = coord_column;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 5) { // done
-						coord_row = coord_row - 1;
-
-						coord_column = coord_column - 1;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 6) { // done
-						coord_row = coord_row;
-
-						coord_column = coord_column - 1;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					} else if (pathfinder == 7) {
-						coord_row = coord_row + 1;
-
-						coord_column = coord_column - 1;
-						if ((coord_row > 5) || (coord_column > 49) && counter > 5) {
-							break;
-						} else if ((coord_row > 5) || (coord_column > 49)) {
-							coord_row -= 2;
-							coord_column -= 2;
-						}
-						if ((coord_row < 0) || (coord_column < 0)) {
-							coord_row++;
-							coord_column++;
-						}
-
-						seed = seed + Integer.toString(coord_row) + "~" + Integer.toString(coord_column) + "/";
-						easy_to_read_seed = easy_to_read_seed + "(" + Integer.toString(coord_row) + ","
-								+ Integer.toString(coord_column) + ") ";
-						find_path[coord_row][coord_column] = "/";
-
-					}
-
-					counter++;
-
-				}
-
-				for (int i = 0; i < find_path.length; i++) {
-					for (int j = 0; j < find_path[i].length; j++) {
-						// find_path[i][j] = "_";
-						System.out.print(find_path[i][j] + " ");
-						Thread.sleep(20);
-					}
+					
+					// Gives the option of going out of this program!
+					Thread.sleep(3 * 1000);
 					System.out.println();
-
+					System.out.println("Do you want to go to restart this program or go to the main program ? [y/n]");
+					String restart_confirmation = settings.next();
+					if (restart_confirmation.contentEquals("y")) {
+						System.out.println("Restarting...");
+					} else {
+						System.out.println("Program Halted!"); // add a bit of flavor to this program!
+						break;
+					}
 				}
-
-				System.out.print("\nSeed: ");
-				Thread.sleep(1000);
-				System.out.print(seed);
-				System.out.print("\nEasy to read seed layout: ");
-				Thread.sleep(1000);
-				System.out.print(easy_to_read_seed);
-
-			}
+			} // pathfinder loop ends here!
 
 			// If the user wants to restart the program
 			System.out.println();
